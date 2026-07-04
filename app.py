@@ -39,7 +39,60 @@ def get_db():
     finally:
         connection.close()
 
+def init_db():
+    """Create tables if they don't exist yet. Safe to run on every startup."""
+    with get_db() as db:
+        db.execute("""
+        CREATE TABLE IF NOT EXISTS USERS (
+            id            INTEGER PRIMARY KEY AUTOINCREMENT,
+            first_name    VARCHAR(50) NOT NULL,
+            last_name     VARCHAR(50) NOT NULL,
+            email         VARCHAR(120) UNIQUE NOT NULL,
+            password_hash VARCHAR(255) NOT NULL,
+            door_no       VARCHAR(20) NOT NULL
+        )
+        """)
 
+        db.execute("""
+        CREATE TABLE IF NOT EXISTS INVENTORY (
+            id       INTEGER PRIMARY KEY AUTOINCREMENT,
+            foodname VARCHAR(50) NOT NULL,
+            quantity INTEGER NOT NULL,
+            expiry   DATE NOT NULL,
+            door_no  VARCHAR(20) NOT NULL
+        )
+        """)
+
+        db.execute("""
+        CREATE TABLE IF NOT EXISTS DONATION (
+            id                    INTEGER PRIMARY KEY AUTOINCREMENT,
+            first_name            VARCHAR(50) NOT NULL,
+            last_name             VARCHAR(50) NOT NULL,
+            email                 VARCHAR(120) NOT NULL,
+            foodname              VARCHAR(50) NOT NULL,
+            quantity              INTEGER NOT NULL,
+            donation_date         DATE NOT NULL,
+            service               VARCHAR(15) NOT NULL,
+            status                VARCHAR(15) NOT NULL DEFAULT 'available',
+            ordered_by_first_name VARCHAR(50),
+            ordered_by_last_name  VARCHAR(50),
+            ordered_by_email      VARCHAR(120)
+        )
+        """)
+
+        existing_columns = {row[1] for row in db.execute("PRAGMA table_info(DONATION)").fetchall()}
+        migration_columns = {
+            "status": "VARCHAR(15) NOT NULL DEFAULT 'available'",
+            "ordered_by_first_name": "VARCHAR(50)",
+            "ordered_by_last_name": "VARCHAR(50)",
+            "ordered_by_email": "VARCHAR(120)",
+        }
+        for column, definition in migration_columns.items():
+            if column not in existing_columns:
+                db.execute(f"ALTER TABLE DONATION ADD COLUMN {column} {definition}")
+
+
+init_db()
 # ---------------------------------------------------------------------------
 # Auth helper
 # ---------------------------------------------------------------------------
