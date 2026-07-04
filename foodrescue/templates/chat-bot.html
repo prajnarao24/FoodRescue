@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Recipe Ideas — Food Rescue{% endblock %}
+{% block content %}
+
+<div class="hero">
+    <span class="eyebrow">Use it up</span>
+    <h1>Recipe Ideas</h1>
+    <p class="lead">Tell us what you've got left over and we'll suggest something to cook before it goes to waste.</p>
+</div>
+
+<section class="section">
+    <form method="GET" action="/chat-bot">
+        <label for="ingredients">Ingredients you have (comma separated)</label>
+        <input type="text" id="ingredients" name="ingredients" placeholder="e.g. rice, tomato, onion" value="{{ query or '' }}">
+        <button type="submit" class="btn btn-gold" style="margin-top:18px;">Find recipes</button>
+    </form>
+
+    {% if error %}
+    <div class="flash" style="margin-top:20px;">{{ error }}</div>
+    {% endif %}
+</section>
+
+{% if recipes %}
+<section class="section">
+    <h2>Recipes you can make</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:18px;">
+        {% for recipe in recipes %}
+        <div class="ticket" style="flex-direction:column; align-items:flex-start; margin-bottom:0;">
+            {% if recipe.image %}<img src="{{ recipe.image }}" alt="{{ recipe.title }}" style="width:100%; border-radius:6px; margin-bottom:10px;">{% endif %}
+            <div class="ticket-main">{{ recipe.title }}</div>
+            <div>Uses {{ recipe.usedIngredientCount }} of your ingredients, missing {{ recipe.missedIngredientCount }}.</div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

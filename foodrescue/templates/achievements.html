@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Achievements — Food Rescue{% endblock %}
+{% block content %}
+
+<div class="hero">
+    <span class="eyebrow">Community impact</span>
+    <h1>What We've Done Together</h1>
+    <p class="lead">Every plate logged on this site adds up. Here's the running tally.</p>
+</div>
+
+<section class="section">
+    <div class="ticket">
+        <div>
+            <div class="ticket-main">Old Age Homes</div>
+            <div>Over 1,000 meals served to elderly residents in the past month.</div>
+        </div>
+    </div>
+    <div class="ticket">
+        <div>
+            <div class="ticket-main">Government Hospitals</div>
+            <div>Essentials provided to 500 patient families this year.</div>
+        </div>
+    </div>
+    <div class="ticket">
+        <div>
+            <div class="ticket-main">Roadside Distribution</div>
+            <div>2,000+ care packages handed out to those living on the streets.</div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="text-align:center;">
+    <h2>Want to add to this?</h2>
+    <p>Every donation logged on your home page counts toward these totals.</p>
+    <a href="/home" class="btn btn-gold">Log a donation</a>
+</section>
+
+{% endblock %}

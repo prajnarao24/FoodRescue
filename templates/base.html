@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Food Rescue{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <nav class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="/home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-6px; margin-right:6px;">
+                    <path d="M3 12h18"/>
+                    <path d="M3 12c0 4.5 4 7 9 7s9-2.5 9-7"/>
+                    <path d="M3 12c0-1 .5-2 1.5-2"/>
+                    <path d="M20.5 10c1 0 1.5 1 1.5 2"/>
+                    <line x1="8" y1="4" x2="8" y2="7"/>
+                    <line x1="12" y1="3" x2="12" y2="7"/>
+                    <line x1="16" y1="4" x2="16" y2="7"/>
+                </svg>
+                Food Rescue
+            </a>
+            <ul class="nav-links">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/waste">Waste Guide</a></li>
+                <li><a href="/inventory">Inventory</a></li>
+                <li><a href="/donation">Fundraising</a></li>
+                <li><a href="/stackFood">Available Food</a></li>
+                <li><a href="/emergency">Emergency</a></li>
+                <li><a href="/chat-bot">Recipe Ideas</a></li>
+                <li><a href="/achievements">Achievements</a></li>
+                <li><a href="/logout">Log out</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash">{{ messages[0] }}</div>
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    {% include "_chatbot.html" %}
+
+    <footer class="site-footer">
+        &copy; 2025 Food Rescue. All rights reserved.
+    </footer>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Fundraising — Food Rescue{% endblock %}
+{% block content %}
+
+<div class="hero">
+    <span class="eyebrow">Fundraising</span>
+    <h1>Bringing Communities Together</h1>
+    <p class="lead">Support one of our active causes, or make a general donation below.</p>
+</div>
+
+<section class="section">
+    <h2>Our Causes</h2>
+    <div class="ticket">
+        <div>
+            <div class="ticket-main">Support Old Age Homes</div>
+            <div>Care packages and meals for the elderly in need.</div>
+        </div>
+        <a href="/fundraising" class="btn btn-gold">Donate</a>
+    </div>
+    <div class="ticket">
+        <div>
+            <div class="ticket-main">Support Government Hospitals</div>
+            <div>Meals and basic necessities for patients and their families.</div>
+        </div>
+        <a href="/fundraising" class="btn btn-gold">Donate</a>
+    </div>
+    <div class="ticket">
+        <div>
+            <div class="ticket-main">Roadside Food Distribution</div>
+            <div>Food for the homeless and those living on the streets.</div>
+        </div>
+        <a href="/fundraising" class="btn btn-gold">Donate</a>
+    </div>
+</section>
+
+<section class="section" style="text-align:center;">
+    <p class="mono" style="color:var(--forest); font-size:1.05rem;">"Over 1,000 meals served to orphanages in the past month."</p>
+</section>
+
+{% endblock %}

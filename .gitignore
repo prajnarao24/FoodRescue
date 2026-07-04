@@ -1,0 +1,5 @@
+.env
+LoginData.db
+__pycache__/
+*.pyc
+.vscode/

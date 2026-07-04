@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Emergency Donation — Food Rescue{% endblock %}
+{% block content %}
+
+<div class="hero">
+    <span class="eyebrow">Urgent</span>
+    <h1>Emergency Donation</h1>
+    <p class="lead">Fast-track a donation right now — every minute counts.</p>
+</div>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:20px;">
+
+    <div class="section" style="text-align:center; margin:0;">
+        <h2>Scan to Donate</h2>
+        <p>Scan this code to open our donation page.</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://www.your-donation-link.com"
+             alt="QR code linking to the donation page" style="border-radius:10px;">
+    </div>
+
+    <div class="section" style="margin:0;">
+        <h2>Donation Options</h2>
+        <p>Help save food and make a difference:</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <a href="/home" class="btn btn-gold btn-block">Donate to Cattle</a>
+            <a href="/home" class="btn btn-gold btn-block">Donate to Pigs</a>
+            <a href="/home" class="btn btn-gold btn-block">Donate to Farms</a>
+        </div>
+    </div>
+
+    <div class="section" style="margin:0;">
+        <h2>Contact Us</h2>
+        <p>Get in touch for more information:</p>
+        <p>Email: <a href="mailto:info@foodrescue.example">info@foodrescue.example</a></p>
+        <p>Phone: <a href="tel:+123456789">+1 234 567 89</a></p>
+        <a href="tel:+123456789" class="btn btn-block">Call for directions</a>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Food Rescue{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <nav class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="/home">🌾 Food Rescue</a>
+            <ul class="nav-links">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/waste">Waste Guide</a></li>
+                <li><a href="/inventory">Inventory</a></li>
+                <li><a href="/donation">Fundraising</a></li>
+                <li><a href="/stackFood">Available Food</a></li>
+                <li><a href="/emergency">Emergency</a></li>
+                <li><a href="/chat-bot">Recipe Ideas</a></li>
+                <li><a href="/achievements">Achievements</a></li>
+                <li><a href="/logout">Log out</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash">{{ messages[0] }}</div>
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    {% include "_chatbot.html" %}
+
+    <footer class="site-footer">
+        &copy; 2026 Food Rescue. All rights reserved.
+    </footer>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

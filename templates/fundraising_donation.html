@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Make a Donation — Food Rescue{% endblock %}
+{% block content %}
+
+<div class="hero">
+    <span class="eyebrow">Fundraising</span>
+    <h1>Help Us Fight Food Waste</h1>
+</div>
+
+{% if donation_amount %}
+<section class="section" style="text-align:center;">
+    <h2>Thank You!</h2>
+    <p>Your donation of <strong>${{ donation_amount }}</strong> has been received. It's contributing directly to our mission of reducing food waste.</p>
+    <a href="/home" class="btn btn-gold">Back to home</a>
+</section>
+{% else %}
+<section class="section">
+    <h2>Make a Donation</h2>
+    <p>Your contribution helps feed those in need.</p>
+    <form action="/fundraising" method="POST">
+        <label for="donation-amount">Donation amount ($)</label>
+        <input type="number" id="donation-amount" name="donation-amount" min="1" required>
+        <button type="submit" class="btn btn-gold" style="margin-top:18px;">Donate now</button>
+    </form>
+</section>
+{% endif %}
+
+{% endblock %}

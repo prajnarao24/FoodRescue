@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up — Food Rescue</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body class="auth-shell">
+    <div class="auth-card">
+        <h1>Create your account</h1>
+        <p class="sub">Join the Food Rescue community</p>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash">{{ messages[0] }}</div>
+        {% endif %}
+        {% endwith %}
+
+        <form method="post" action="/add_user">
+            <label for="fname">First name</label>
+            <input type="text" id="fname" name="fname" required>
+
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" name="lname" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="door_no">Door number</label>
+            <input type="text" id="door_no" name="door_no" placeholder="e.g. A-101" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" minlength="8" required>
+
+            <button type="submit" class="btn btn-block" style="margin-top:20px;">Create account</button>
+        </form>
+
+        <p class="switch">Already have an account? <a href="/">Log in</a></p>
+    </div>
+</body>
+</html>
