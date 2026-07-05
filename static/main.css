@@ -53,17 +53,19 @@ a { color: var(--forest); }
 .topbar {
     background: var(--forest);
     border-bottom: 3px solid var(--gold);
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 .topbar-inner {
-    max-width: 1080px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 14px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
+    gap: 16px;
 }
 
 .brand {
@@ -72,13 +74,25 @@ a { color: var(--forest); }
     font-weight: 600;
     color: var(--cream);
     text-decoration: none;
+    flex-shrink: 0;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--cream);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 8px;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
+    flex-wrap: nowrap;
+    gap: 2px;
     margin: 0;
     padding: 0;
 }
@@ -87,17 +101,48 @@ a { color: var(--forest); }
     display: inline-block;
     color: var(--cream);
     text-decoration: none;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 500;
-    padding: 8px 12px;
+    padding: 8px 10px;
     border-radius: 6px;
     opacity: 0.88;
+    white-space: nowrap;
     transition: background 0.15s ease, opacity 0.15s ease;
 }
 
 .nav-links a:hover {
     background: rgba(255, 255, 255, 0.1);
     opacity: 1;
+}
+
+/* ---------- Mobile nav ---------- */
+@media (max-width: 640px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+        gap: 2px;
+        padding-top: 10px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 12px 14px;
+        font-size: 0.95rem;
+        white-space: normal;
+    }
+
+    .topbar-inner {
+        flex-wrap: wrap;
+    }
 }
 
 /* ---------- Page shell ---------- */
@@ -398,20 +443,6 @@ tr:last-child td { border-bottom: none; }
 
 .user-btn:hover { background: var(--forest-dark); }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 640px) {
-    .hero h1 { font-size: 1.8rem; }
-    .section, .auth-card { padding: 22px 18px; }
-    .ticket { flex-direction: column; align-items: flex-start; }
-    .nav-links { font-size: 0.8rem; }
-}
-
-/* ---------- Reduced motion ---------- */
-@media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; }
-}
-
-
 /* ---------- Recipe Finder page ---------- */
 .recipe-page .search-form {
     display: flex;
@@ -491,4 +522,16 @@ tr:last-child td { border-bottom: none; }
 @media (max-width: 640px) {
     .recipe-grid { grid-template-columns: 1fr; }
     .recipe-page .search-form { flex-direction: column; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+    .hero h1 { font-size: 1.8rem; }
+    .section, .auth-card { padding: 22px 18px; }
+    .ticket { flex-direction: column; align-items: flex-start; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
 }
