@@ -2,7 +2,7 @@
 
 A Flask web app that connects people with surplus food to people who need it — reducing food waste one donation at a time.
 
-> Over 1.3 billion tons of food is wasted globally every year — in India alone, roughly 68 million tons goes to waste annually, about 40% of what's produced. Food Rescue lets users donate surplus food, request available donations, track a personal inventory, get composting guidance, and find recipes from ingredients they already have.
+> Over 1.3 billion tons of food is wasted globally every year ,in India alone, roughly 68 million tons goes to waste annually, about 40% of what's produced. Food Rescue lets users donate surplus food, request available donations, track a personal inventory, get composting guidance, and find recipes from ingredients they already have.
 
 ---
 
