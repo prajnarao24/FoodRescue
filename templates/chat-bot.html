@@ -3,91 +3,52 @@
 
 {% block content %}
 
-<div class="container mt-4">
+<div class="page-container recipe-page">
 
-    <h2 class="mb-3">🍽 Recipe Finder</h2>
+    <h2> Recipe Finder</h2>
 
-    <p class="text-muted">
+    <p>
         Enter one or more ingredients separated by commas.<br>
         <strong>Example:</strong> tomato, onion, egg
     </p>
 
-    <form method="GET" action="/chat-bot">
-
-        <div class="input-group mb-4">
-
-            <input
-                type="text"
-                name="ingredients"
-                class="form-control"
-                placeholder="Example: tomato, onion, egg"
-                value="{{ query }}"
-                required
-            >
-
-            <button class="btn btn-success" type="submit">
-                🔍 Search Recipes
-            </button>
-
-        </div>
-
+    <form method="GET" action="/chat-bot" class="search-form">
+        <input
+            type="text"
+            name="ingredients"
+            placeholder="Example: tomato, onion, egg"
+            value="{{ query }}"
+            required
+        >
+        <button class="btn btn-gold" type="submit">
+             Search Recipes
+        </button>
     </form>
 
     {% if error %}
-
-    <div class="alert alert-warning">
+    <div class="flash">
         {{ error }}
     </div>
-
     {% endif %}
 
     {% if recipes %}
 
-    <h4 class="mb-3">
+    <h4 class="result-count">
         Found {{ recipes|length }} recipe(s)
     </h4>
 
-    <div class="row">
-
+    <div class="recipe-grid">
         {% for recipe in recipes %}
-
-        <div class="col-lg-4 col-md-6 mb-4">
-
-            <div class="card shadow-sm h-100">
-
-                <img
-                    src="{{ recipe.strMealThumb }}"
-                    class="card-img-top"
-                    alt="{{ recipe.strMeal }}"
-                    style="height:220px; object-fit:cover;"
-                >
-
-                <div class="card-body d-flex flex-column">
-
-                    <h5 class="card-title">
-                        {{ recipe.strMeal }}
-                    </h5>
-
-                    <p class="text-muted mb-3">
-                        Meal ID: {{ recipe.idMeal }}
-                    </p>
-
-                    <a
-                        href="https://www.themealdb.com/meal/{{ recipe.idMeal }}"
-                        target="_blank"
-                        class="btn btn-outline-success mt-auto"
-                    >
-                        View Recipe
-                    </a>
-
-                </div>
-
+        <div class="recipe-card">
+            <img src="{{ recipe.strMealThumb }}" alt="{{ recipe.strMeal }}">
+            <div class="recipe-card-body">
+                <h5>{{ recipe.strMeal }}</h5>
+                <p class="meal-id">Meal ID: {{ recipe.idMeal }}</p>
+                
+                 <a href="https://www.themealdb.com/meal/{{ recipe.idMeal }}" target="_blank" class="btn btn-gold">View Recipe</a>
             </div>
-
         </div>
-
         {% endfor %}
-
     </div>
 
     {% endif %}
